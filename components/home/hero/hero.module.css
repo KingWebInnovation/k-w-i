@@ -295,7 +295,7 @@
   position: absolute;
   top: 20px;
   right: 20px;
-  background: var(--color-secondary);
+  background: var(--color-amber-200);
   color: var(--color-teal-950);
   padding: 0.5rem 1rem;
   border-radius: 25px;
