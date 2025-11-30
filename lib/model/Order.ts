@@ -16,10 +16,9 @@ export interface IOrder extends Document {
   fileUrls?: string[];
   links?: string[];
 
-  // ✅ Payment provider references
+  // ✅ Payment provider reference
   paypalOrderId?: string;
-  paystackReference?: string;
-  paystackAccessCode?: string;
+
   status:
     | "pending"
     | "approved"
@@ -64,10 +63,8 @@ const OrderSchema = new Schema<IOrder>(
     fileUrls: { type: [String], default: [] },
     links: { type: [String], default: [] },
 
-    // ✅ Payment provider fields
+    // ✅ Payment provider field
     paypalOrderId: { type: String },
-    paystackReference: { type: String },
-    paystackAccessCode: { type: String },
 
     status: {
       type: String,

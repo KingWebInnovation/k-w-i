@@ -130,7 +130,6 @@ export default function OrderDetails() {
       ? styles.paymentPending
       : styles.paymentUnpaid;
 
-  // ✅ Cancel handler
   const handleCancel = async () => {
     if (!id) return;
     if (!window.confirm("Are you sure you want to cancel this order?")) return;
@@ -145,7 +144,6 @@ export default function OrderDetails() {
     }
   };
 
-  // ✅ Delete handler
   const handleDelete = async () => {
     if (!id) return;
     if (normalizedStatus !== "cancelled") {
@@ -168,7 +166,6 @@ export default function OrderDetails() {
     }
   };
 
-  // ✅ PayPal handler
   const handlePayPal = async () => {
     try {
       const res = await axios.post("/api/paypal/create", {
@@ -191,29 +188,6 @@ export default function OrderDetails() {
     }
   };
 
-  // ✅ Paystack (Card) handler
-  const handlePaystack = async () => {
-    if (!id || !orderData) return;
-    try {
-      const res = await axios.post("/api/paystack/initialize", {
-        type: "order",
-        orderId: orderData._id,
-        amount: orderData.price,
-        email: orderData.email,
-      });
-
-      if (res.data?.status && res.data.data?.authorization_url) {
-        window.location.href = res.data.data.authorization_url;
-      } else {
-        toast.error("Could not start Paystack payment.");
-      }
-    } catch (err) {
-      console.error("Paystack error:", err);
-      toast.error("Failed to initiate Paystack payment.");
-    }
-  };
-
-  // ✅ Accept order handler
   const handleAccept = async () => {
     if (!id) return;
     setAccepting(true);
@@ -347,34 +321,6 @@ export default function OrderDetails() {
           </span>
         </div>
 
-        {/* Submissions */}
-        {submissions && submissions.length > 0 && (
-          <div className={styles.sectionBlock}>
-            <h2>See Files</h2>
-            {subsLoading ? (
-              <p>Loading files...</p>
-            ) : (
-              <ul className={styles.fileList}>
-                {submissions.flatMap((sub) =>
-                  sub.files.map((file) => (
-                    <li key={file.fileId} className={styles.fileItem}>
-                      <span className={styles.fileIcon}>📎</span>
-                      <a
-                        href={file.fileUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.fileLink}
-                      >
-                        {file.filename}
-                      </a>
-                    </li>
-                  ))
-                )}
-              </ul>
-            )}
-          </div>
-        )}
-
         {/* Actions */}
         {!isAdmin && (
           <div className={styles.actions}>
@@ -450,12 +396,6 @@ export default function OrderDetails() {
             <button onClick={handlePayPal} className={styles.modalPayBtn}>
               Pay with PayPal
             </button>
-            <button onClick={handlePaystack} className={styles.modalPayBtn}>
-              Pay with Card (Paystack)
-            </button>
-
-            {/* <button className={styles.modalPayBtn}>Pay with M-Pesa</button>
-            <button className={styles.modalPayBtn}>Pay with Zelle</button> */}
 
             <button
               onClick={() => setShowPaymentModal(false)}

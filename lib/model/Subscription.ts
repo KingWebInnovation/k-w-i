@@ -31,10 +31,6 @@ export interface ISubscription extends Document {
 
   // ✅ Payment provider references
   paypalSubscriptionId?: string;
-  paystackSubscriptionCode?: string; // ← added
-  paystackEmailToken?: string; // ← added
-  paystackReference?: string;
-  paystackAccessCode?: string;
 
   createdAt: Date;
   updatedAt: Date;
@@ -82,12 +78,8 @@ const SubscriptionSchema = new Schema<ISubscription>(
       default: "pending",
     },
 
-    // ✅ Payment provider references
+    // ✅ Payment provider reference
     paypalSubscriptionId: { type: String },
-    paystackSubscriptionCode: { type: String }, // ← added
-    paystackEmailToken: { type: String }, // ← added
-    paystackReference: { type: String },
-    paystackAccessCode: { type: String },
   },
   { timestamps: true }
 );

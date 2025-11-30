@@ -1,5 +1,3 @@
-"use client";
-
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
@@ -24,7 +22,7 @@ interface ISubscription {
   links: string[];
 }
 
-// ✅ API fetcher
+// API fetcher
 async function fetchSubscription(id: string): Promise<ISubscription> {
   const { data } = await axios.get(`/api/subscription/${id}`);
   return data;
@@ -40,9 +38,8 @@ export default function SubscriptionDetails() {
   const isAdmin = user?.publicMetadata?.role === "admin";
 
   const [loadingAction, setLoadingAction] = useState(false);
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
-  // ✅ React Query fetch
+  // React Query fetch
   const {
     data: subscription,
     isLoading,
@@ -53,7 +50,6 @@ export default function SubscriptionDetails() {
     enabled: !!id,
   });
 
-  // ✅ Loading UI
   if (isLoading) {
     return (
       <div className={styles.loadingContainer}>
@@ -63,7 +59,6 @@ export default function SubscriptionDetails() {
     );
   }
 
-  // ✅ Error UI
   if (isError || !subscription) {
     return (
       <div className={styles.errorContainer}>
@@ -78,7 +73,6 @@ export default function SubscriptionDetails() {
     );
   }
 
-  // ✅ Normalized values
   const normalizedStatus = subscription.status?.toLowerCase() || "pending";
   const statusClass =
     normalizedStatus === "pending"
@@ -91,17 +85,15 @@ export default function SubscriptionDetails() {
       ? styles.statusCancelled
       : styles.statusExpired;
 
-  const shortId = `${subscription._id.toString().slice(0, 4)}${subscription._id
-    .toString()
-    .slice(-4)}`;
+  const shortId = `${subscription._id.slice(0, 4)}${subscription._id.slice(
+    -4
+  )}`;
 
-  // ✅ Handlers
-  // ✅ PayPal handler for subscription
   const handlePayPal = async () => {
     if (!id || !subscription) return;
     try {
       const res = await axios.post("/api/paypal/create", {
-        type: "subscription", // 👈 tell backend it's a subscription
+        type: "subscription",
         subscriptionId: subscription._id,
         amount: subscription.price,
       });
@@ -110,39 +102,11 @@ export default function SubscriptionDetails() {
         (link: { rel: string }) => link.rel === "approve"
       )?.href;
 
-      if (approvalUrl) {
-        window.location.href = approvalUrl;
-      } else {
-        alert("Could not start PayPal payment.");
-      }
+      if (approvalUrl) window.location.href = approvalUrl;
+      else alert("Could not start PayPal payment.");
     } catch (err) {
       console.error("PayPal error:", err);
       alert("Failed to initiate PayPal payment.");
-    }
-  };
-
-  // ✅ Paystack handler for subscription
-  const handlePaystack = async () => {
-    if (!id || !subscription) return;
-
-    try {
-      const res = await axios.post("/api/paystack/initialize", {
-        type: "subscription",
-        subscriptionId: subscription._id,
-        email: subscription.email,
-        name: subscription.name,
-        amount: subscription.price,
-      });
-
-      if (res.data?.status && res.data.data?.authorization_url) {
-        // Redirect to Paystack checkout page
-        window.location.href = res.data.data.authorization_url;
-      } else {
-        alert("Could not start Paystack subscription payment.");
-      }
-    } catch (err) {
-      console.error("Paystack error:", err);
-      alert("Failed to initiate Paystack subscription.");
     }
   };
 
@@ -205,7 +169,6 @@ export default function SubscriptionDetails() {
       </button>
 
       <div className={styles.detailsCard}>
-        {/* Header */}
         <div className={styles.headerRow}>
           <h1 className={styles.heading}>
             {subscription.planTitle} ({subscription.interval})
@@ -218,21 +181,18 @@ export default function SubscriptionDetails() {
           </div>
         </div>
 
-        {/* Info */}
         <div className={styles.infoGrid}>
           <div className={styles.infoRow}>
             <div>
               <strong>Email:</strong>
               <p>{subscription.email}</p>
             </div>
-
             <div>
               <strong>Price:</strong>
               <p>
                 {subscription.price.toFixed(2)} / {subscription.interval}
               </p>
             </div>
-
             {normalizedStatus === "active" && (
               <div>
                 <strong>Next Billing:</strong>
@@ -251,13 +211,11 @@ export default function SubscriptionDetails() {
           )}
         </div>
 
-        {/* Description */}
         <div className={styles.sectionBlock}>
           <h2>Description</h2>
           <p>{subscription.description}</p>
         </div>
 
-        {/* Features */}
         {subscription.features?.length > 0 && (
           <div className={styles.sectionBlock}>
             <h2>Features</h2>
@@ -269,7 +227,6 @@ export default function SubscriptionDetails() {
           </div>
         )}
 
-        {/* Files */}
         {subscription.fileUrls?.length > 0 && (
           <div className={styles.sectionBlock}>
             <h2>Attached Files</h2>
@@ -292,7 +249,6 @@ export default function SubscriptionDetails() {
           </div>
         )}
 
-        {/* Links */}
         {subscription.links?.length > 0 && (
           <div className={styles.sectionBlock}>
             <h2>Links</h2>
@@ -313,14 +269,13 @@ export default function SubscriptionDetails() {
           </div>
         )}
 
-        {/* Actions */}
         {!isAdmin && (
           <div className={styles.actions}>
             {normalizedStatus === "pending" && (
               <>
                 <button
                   className={styles.payBtn}
-                  onClick={() => setShowPaymentModal(true)}
+                  onClick={handlePayPal}
                   disabled={loadingAction}
                 >
                   Pay Now
@@ -376,39 +331,6 @@ export default function SubscriptionDetails() {
           </div>
         )}
       </div>
-
-      {/* ✅ Payment Modal (Paystack enabled, PayPal disabled) */}
-      {showPaymentModal && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modal}>
-            <h2>Select Payment Method</h2>
-
-            {/* Disabled PayPal button with warning */}
-            <button
-              disabled
-              className={`${styles.modalPayBtn} ${styles.disabledBtn}`}
-              title="Currently disabled. Please use Paystack to pay for subscriptions."
-            >
-              Pay with PayPal (Disabled)
-            </button>
-            <p className={styles.warningText}>
-              ⚠️ PayPal is not available right now. Please use Paystack.
-            </p>
-
-            {/* Active Paystack button */}
-            <button onClick={handlePaystack} className={styles.modalPayBtn}>
-              Pay with Card (Paystack)
-            </button>
-
-            <button
-              onClick={() => setShowPaymentModal(false)}
-              className={styles.modalCloseBtn}
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

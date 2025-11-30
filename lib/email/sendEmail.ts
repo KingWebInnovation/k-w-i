@@ -20,7 +20,7 @@ export async function sendEmail({
   });
 
   await transporter.sendMail({
-    from: `"Your Website" <${process.env.SMTP_USER}>`,
+    from: `"King Web Innovation" <${process.env.SMTP_USER}>`,
     to,
     subject,
     text,

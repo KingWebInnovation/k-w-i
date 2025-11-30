@@ -78,7 +78,7 @@ export default function EditOrder() {
           body: file,
         });
 
-        const publicUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/nxtsite/${path}`;
+        const publicUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/kwi/${path}`;
         uploadedFileUrls.push(publicUrl);
       }
 

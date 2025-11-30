@@ -1,6 +1,5 @@
 import { connectDB } from "@/lib/DB/ConnectDB";
 import { Subscription } from "@/lib/model/Subscription";
-import axios, { AxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
 // GET /api/subscription/[id]
@@ -35,7 +34,7 @@ export async function PATCH(req: NextRequest, context: unknown) {
     await connectDB();
     const body = await req.json();
 
-    // ✅ only allow subscription-related fields
+    // Only allow subscription-related fields
     const allowedFields: Partial<{
       name: string;
       email: string;
@@ -53,8 +52,6 @@ export async function PATCH(req: NextRequest, context: unknown) {
       endDate: Date;
       status: "pending" | "active" | "paused" | "cancelled" | "expired";
       paypalSubscriptionId: string;
-      paystackSubscriptionCode: string;
-      paystackEmailToken: string;
     }> = {};
 
     if (body.name !== undefined) allowedFields.name = body.name;
@@ -88,47 +85,6 @@ export async function PATCH(req: NextRequest, context: unknown) {
 
     if (body.paypalSubscriptionId !== undefined)
       allowedFields.paypalSubscriptionId = body.paypalSubscriptionId;
-    if (body.paystackSubscriptionCode !== undefined)
-      allowedFields.paystackSubscriptionCode = body.paystackSubscriptionCode;
-    if (body.paystackEmailToken !== undefined)
-      allowedFields.paystackEmailToken = body.paystackEmailToken;
-
-    if (body.status?.toLowerCase() === "cancelled") {
-      const subscription = await Subscription.findById(params.id);
-
-      if (
-        subscription?.paystackSubscriptionCode &&
-        subscription?.paystackEmailToken
-      ) {
-        try {
-          const response = await axios.post(
-            "https://api.paystack.co/subscription/disable",
-            {
-              code: subscription.paystackSubscriptionCode,
-              token: subscription.paystackEmailToken,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
-                "Content-Type": "application/json",
-              },
-            }
-          );
-
-          console.log("👉 Paystack cancel response:", response.data);
-        } catch (err) {
-          const error = err as AxiosError<{ message?: string }>;
-          console.error(
-            "❌ Failed to cancel Paystack subscription:",
-            error.response?.data || error.message
-          );
-        }
-      } else {
-        console.warn(
-          "⚠️ No paystackSubscriptionCode or paystackEmailToken found."
-        );
-      }
-    }
 
     const updatedSubscription = await Subscription.findByIdAndUpdate(
       params.id,
@@ -152,6 +108,8 @@ export async function PATCH(req: NextRequest, context: unknown) {
     );
   }
 }
+
+// DELETE /api/subscription/[id]
 export async function DELETE(req: NextRequest, context: unknown) {
   const { params } = context as { params: { id: string } };
   try {
