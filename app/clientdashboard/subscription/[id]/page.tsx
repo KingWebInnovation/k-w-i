@@ -7,6 +7,7 @@ import { useUser } from "@clerk/nextjs";
 import { useState } from "react";
 import styles from "./page.module.css";
 import Link from "next/link";
+import { CreditCard, Wallet } from "lucide-react";
 
 interface ISubscription {
   _id: string;
@@ -35,13 +36,12 @@ export default function SubscriptionDetails() {
   const id = params?.id as string | undefined;
   const router = useRouter();
   const queryClient = useQueryClient();
-
   const { user } = useUser();
   const isAdmin = user?.publicMetadata?.role === "admin";
 
   const [loadingAction, setLoadingAction] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
-  // React Query fetch
   const {
     data: subscription,
     isLoading,
@@ -52,16 +52,15 @@ export default function SubscriptionDetails() {
     enabled: !!id,
   });
 
-  if (isLoading) {
+  if (isLoading)
     return (
       <div className={styles.loadingContainer}>
         <div className={styles.spinner}>⏳</div>
         <p>Loading subscription details...</p>
       </div>
     );
-  }
 
-  if (isError || !subscription) {
+  if (isError || !subscription)
     return (
       <div className={styles.errorContainer}>
         <h1>⚠️ Failed to load subscription</h1>
@@ -73,7 +72,6 @@ export default function SubscriptionDetails() {
         </button>
       </div>
     );
-  }
 
   const normalizedStatus = subscription.status?.toLowerCase() || "pending";
   const statusClass =
@@ -91,39 +89,20 @@ export default function SubscriptionDetails() {
     -4
   )}`;
 
-  const handlePayPal = async () => {
-    if (!id || !subscription) return;
-    try {
-      const res = await axios.post("/api/paypal/create", {
-        type: "subscription",
-        subscriptionId: subscription._id,
-        amount: subscription.price,
-      });
-
-      const approvalUrl = res.data.links?.find(
-        (link: { rel: string }) => link.rel === "approve"
-      )?.href;
-
-      if (approvalUrl) window.location.href = approvalUrl;
-      else alert("Could not start PayPal payment.");
-    } catch (err) {
-      console.error("PayPal error:", err);
-      alert("Failed to initiate PayPal payment.");
-    }
-  };
-
+  // Actions
   const handleCancel = async () => {
-    if (!id) return;
-    if (!window.confirm("Are you sure you want to cancel this subscription?"))
+    if (
+      !id ||
+      !window.confirm("Are you sure you want to cancel this subscription?")
+    )
       return;
-
     setLoadingAction(true);
     try {
       await axios.patch(`/api/subscription/${id}`, { status: "cancelled" });
       alert("Subscription has been cancelled.");
       queryClient.invalidateQueries({ queryKey: ["subscription", id] });
     } catch (err) {
-      console.error("Cancel subscription error:", err);
+      console.error(err);
       alert("Failed to cancel subscription.");
     } finally {
       setLoadingAction(false);
@@ -147,12 +126,15 @@ export default function SubscriptionDetails() {
       queryClient.invalidateQueries({ queryKey: ["subscriptions"] });
       router.push("/clientdashboard/subscription");
     } catch (err) {
-      console.error("Delete subscription error:", err);
+      console.error(err);
       alert("Failed to delete subscription.");
     } finally {
       setLoadingAction(false);
     }
   };
+
+  const handleStripe = () => router.push(`/checkout/${subscription._id}`);
+  const handlePayPal = () => alert("PayPal coming soon!");
 
   return (
     <section className={styles.section}>
@@ -171,6 +153,7 @@ export default function SubscriptionDetails() {
       </button>
 
       <div className={styles.detailsCard}>
+        {/* Header */}
         <div className={styles.headerRow}>
           <h1 className={styles.heading}>
             {subscription.planTitle} ({subscription.interval})
@@ -183,6 +166,7 @@ export default function SubscriptionDetails() {
           </div>
         </div>
 
+        {/* Info */}
         <div className={styles.infoGrid}>
           <div className={styles.infoRow}>
             <div>
@@ -213,11 +197,13 @@ export default function SubscriptionDetails() {
           )}
         </div>
 
+        {/* Description */}
         <div className={styles.sectionBlock}>
           <h2>Description</h2>
           <p>{subscription.description}</p>
         </div>
 
+        {/* Features */}
         {subscription.features?.length > 0 && (
           <div className={styles.sectionBlock}>
             <h2>Features</h2>
@@ -229,6 +215,7 @@ export default function SubscriptionDetails() {
           </div>
         )}
 
+        {/* Files */}
         {subscription.fileUrls?.length > 0 && (
           <div className={styles.sectionBlock}>
             <h2>Attached Files</h2>
@@ -251,6 +238,7 @@ export default function SubscriptionDetails() {
           </div>
         )}
 
+        {/* Links */}
         {subscription.links?.length > 0 && (
           <div className={styles.sectionBlock}>
             <h2>Links</h2>
@@ -271,14 +259,14 @@ export default function SubscriptionDetails() {
           </div>
         )}
 
+        {/* Actions */}
         {!isAdmin && (
           <div className={styles.actions}>
             {normalizedStatus === "pending" && (
               <>
                 <button
                   className={styles.payBtn}
-                  onClick={handlePayPal}
-                  disabled={loadingAction}
+                  onClick={() => setShowPaymentModal(true)}
                 >
                   Pay Now
                 </button>
@@ -333,6 +321,40 @@ export default function SubscriptionDetails() {
           </div>
         )}
       </div>
+
+      {/* Payment Modal */}
+      {showPaymentModal && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <h2>Pay with</h2>
+
+            {/* Stripe / Active Pay Button */}
+            <button
+              className={`${styles.modalPayBtn} ${styles.activePay}`}
+              onClick={handleStripe}
+            >
+              <CreditCard size={20} className="inline mr-2" /> Bank Card
+            </button>
+
+            {/* PayPal / Disabled Button */}
+            <button
+              className={`${styles.modalPayBtn} ${styles.paypalBtn}`}
+              onClick={handlePayPal}
+              disabled
+            >
+              <Wallet size={20} className="inline mr-2" /> PayPal (Coming Soon)
+            </button>
+
+            {/* Cancel Button */}
+            <button
+              className={styles.modalCloseBtn}
+              onClick={() => setShowPaymentModal(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
