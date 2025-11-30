@@ -1,0 +1,199 @@
+.section {
+  width: 100%;
+  min-height: 100px;
+  background-color: var(--color-teal-100);
+  color: var(--color-neutral-dark);
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.nav {
+  width: 90%;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.logoLink {
+  width: 30%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  transition: transform 300ms ease;
+}
+.logoLink p {
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-teal-950);
+  margin-top: 0.5rem;
+}
+
+.logoLink:hover,
+.logoLink:focus {
+  transform: scale(1.1);
+  outline: none;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.navLinks {
+  width: 70%;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.navLink {
+  color: var(--color-teal-950);
+  text-decoration: none;
+  transition: color 200ms ease;
+  font-weight: 500;
+  font-size: 16px;
+  position: relative;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-secondary);
+  transition: width 0.3s ease;
+}
+
+.navLink:hover::after,
+.navLink.active::after {
+  width: 100%;
+}
+
+.navLink:hover,
+.navLink:focus {
+  color: var(--color-secondary);
+}
+
+.callToActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  width: 30%;
+}
+
+/* Solid button */
+.buttonLink {
+  padding: 8px 20px;
+  background-color: var(--color-teal);
+  color: white;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 200ms ease;
+}
+
+.buttonLink:hover,
+.buttonLink:focus {
+  background-color: transparent;
+  border: 2px solid var(--color-secondary);
+  color: var(--color-teal-950);
+}
+
+/* Outline button */
+.outlineButton {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 2px solid var(--color-secondary);
+  color: var(--color-secondary);
+  border-radius: 6px;
+  font-weight: 700;
+  transition: all 200ms ease;
+}
+
+.outlineButton:hover,
+.outlineButton:focus {
+  background-color: var(--color-neutral-dark);
+  color: var(--color-teal-950);
+  border: 2px solid var(--color-teal);
+}
+
+.userButtonWrapper {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 960px) {
+  .hamburger {
+    display: block;
+  }
+  .logoLink p {
+    display: none;
+  }
+
+  .navMenu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-teal-100);
+    padding: 15px 0;
+  }
+
+  .navMenu.open {
+    display: flex;
+  }
+
+  .navLinks,
+  .callToActions {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .navLink {
+    font-size: 16px;
+    color: var(--color-teal-950);
+  }
+
+  .navLink::after {
+    background-color: var(--color-secondary);
+  }
+
+  .buttonLink {
+    background-color: var(--color-accent);
+  }
+
+  .outlineButton {
+    border-color: var(--color-teal);
+    color: var(--color-teal-950);
+  }
+
+  .outlineButton:hover {
+    background-color: white;
+    color: var(--color-primary);
+  }
+}

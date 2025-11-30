@@ -1,0 +1,265 @@
+.section {
+  padding: 2rem;
+  font-family: "Poppins", sans-serif;
+  margin-top: 120px;
+  background: #f9fafb;
+  min-height: calc(100vh - 120px);
+}
+
+/* Back button */
+.backBtn {
+  background: none;
+  border: none;
+  color: #0d3b2e;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s ease;
+}
+
+.backBtn:hover {
+  color: #0b3227;
+  text-decoration: underline;
+}
+
+/* Card wrapper */
+.detailsCard {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.heading {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0d3b2e;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: #111827;
+  font-size: 0.95rem;
+  gap: 0.5rem;
+}
+
+.form input,
+.form textarea {
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form input:focus,
+.form textarea:focus {
+  outline: none;
+  border-color: #0d3b2e;
+  box-shadow: 0 0 0 2px rgba(13, 59, 46, 0.1);
+}
+
+/* Links */
+.linksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.linkRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.linkRow input {
+  flex: 1;
+}
+
+.addLinkBtn {
+  background: #f3f4f6;
+  border: 1px dashed #d1d5db;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #374151;
+  transition: background 0.2s ease;
+}
+
+.addLinkBtn:hover {
+  background: #e5e7eb;
+}
+
+.removeBtn {
+  background: #fee2e2;
+  border: none;
+  color: #b91c1c;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.removeBtn:hover {
+  background: #fecaca;
+}
+
+/* Files */
+.filesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.fileItem a {
+  color: #0d3b2e;
+  font-size: 0.9rem;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.fileItem a:hover {
+  text-decoration: underline;
+}
+
+.fileInput {
+  margin-top: 0.5rem;
+}
+
+/* Save button */
+.saveBtn {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #0d3b2e;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.saveBtn:hover {
+  background: #0b3227;
+}
+
+.saveBtn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Loading */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 120px);
+  text-align: center;
+  padding: 2rem;
+}
+
+.spinner {
+  font-size: 2.2rem;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+  color: #0d3b2e;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error messages */
+.errorMsg {
+  color: #b91c1c;
+  text-align: center;
+  margin-top: 2rem;
+}
+/* ===== Links ===== */
+.linksContainer {
+  margin-top: 1rem;
+}
+
+.linkRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.linkItem {
+  color: #0369a1;
+  font-weight: 500;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.linkItem:hover {
+  text-decoration: underline;
+}
+
+.addLinkRow {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.addLinkRow input {
+  flex: 1;
+}
+
+.addLinkBtn {
+  background: #0284c7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.addLinkBtn:hover {
+  background: #0369a1;
+}

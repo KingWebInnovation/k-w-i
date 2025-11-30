@@ -1,0 +1,192 @@
+.card {
+  background: var(--color-amber-50);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: center;
+  text-align: center;
+  border: 2px solid transparent;
+}
+
+.card.popular {
+  background: linear-gradient(
+    135deg,
+    var(--color-teal-100) 0%,
+    var(--color-teal-200) 100%
+  );
+  border: 2px solid var(--color-secondary);
+  transform: scale(1.05);
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+.header {
+  width: 100%;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-teal-950);
+  margin-bottom: 0.5rem;
+}
+
+.header p {
+  font-size: 0.85rem;
+  color: var(--color-slate-600);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-slate-600);
+}
+
+.priceContainer {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-teal-950);
+}
+
+.cycle {
+  font-size: 0.85rem;
+  color: var(--color-text-neutral);
+}
+
+.button {
+  margin-top: auto;
+  padding: 0.7rem 1.1rem;
+  border-radius: 10px;
+  min-width: 200px;
+  background: linear-gradient(
+    135deg,
+    var(--color-teal-400) 0%,
+    var(--color-secondary) 100%
+  );
+  color: var(--color-teal-900);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(
+    135deg,
+    var(--color-secondary) 0%,
+    var(--color-teal-400) 100%
+  );
+}
+
+.card.custom .buttonGroup {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.card.custom .contactButton {
+  flex: 1;
+  min-width: 150px;
+  padding: 0.7rem 1.1rem;
+  border-radius: 10px;
+  border: 2px solid var(--color-secondary);
+  color: var(--color-teal-950);
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.card.custom .contactButton:hover {
+  background: var(--color-secondary);
+  color: var(--color-teal-950);
+}
+
+.badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--color-secondary);
+  color: var(--color-teal-950);
+  padding: 0.35rem 1rem;
+  border-radius: 25px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  animation: pulse 2s infinite;
+  white-space: nowrap;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px 4px rgba(245, 158, 11, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5);
+  }
+}
+@media (max-width: 768px) {
+  .card {
+    padding: 1rem;
+  }
+  .title {
+    font-size: 1.1rem;
+  }
+  .description {
+    font-size: 0.8rem;
+  }
+  .price {
+    font-size: 1.2rem;
+  }
+  .button,
+  .card.custom .contactButton {
+    min-width: 150px;
+    padding: 0.6rem 1rem;
+  }
+}

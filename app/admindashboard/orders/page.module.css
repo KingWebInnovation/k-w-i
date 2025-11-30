@@ -1,0 +1,240 @@
+.section {
+  padding: 2rem 1.5rem;
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--clr-green-dark);
+  letter-spacing: -0.5px;
+}
+.subheading {
+  font-size: 1.1rem;
+  color: var(--clr-slate-light);
+}
+
+.clerkGroup {
+  width: 85%;
+  margin: 2rem auto;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--clr-blue-muted);
+}
+.clerkTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--clr-green-dark);
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.grid {
+  display: grid;
+  gap: 1.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+}
+
+.card {
+  background: var(--clr-cream);
+  border: 2px solid var(--clr-green-dark);
+  max-width: 450px;
+  border-radius: 16px;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 20px rgba(45, 84, 43, 0.15);
+  transition: all 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 28px rgba(45, 84, 43, 0.25);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+.cardTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--clr-green-dark);
+}
+.orderNumber {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--clr-brown);
+}
+
+.subHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+.planType {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--clr-orange);
+}
+.createdAt {
+  font-size: 0.85rem;
+  color: var(--clr-slate-light);
+}
+
+.statusRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+}
+.statusRow strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--clr-slate-dark);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  border: 1px solid transparent;
+}
+.statusPending {
+  background: var(--clr-yellow-light);
+  color: var(--clr-amber-dark);
+  border-color: var(--clr-amber-light);
+}
+.statusInProgress {
+  background: var(--clr-blue-muted);
+  color: var(--clr-cream);
+}
+.statusCompleted {
+  background: var(--clr-green-light);
+  color: var(--clr-cream);
+}
+.statusAccepted {
+  background: var(--clr-mint);
+  color: var(--clr-cream);
+}
+.statusFailed {
+  background: var(--clr-orange);
+  color: var(--clr-cream);
+}
+.statusCancelled {
+  background: var(--clr-brown);
+  color: var(--clr-cream);
+}
+
+.paymentUnpaid {
+  background: var(--clr-orange);
+  color: var(--clr-cream);
+}
+.paymentCaptured {
+  background: var(--clr-green-light);
+  color: var(--clr-cream);
+}
+.paymentAuthorized {
+  background: var(--clr-yellow-light);
+  color: var(--clr-amber-dark);
+}
+.paymentVoided {
+  background: var(--clr-slate-light);
+  color: var(--clr-cream);
+}
+.paymentRefunded {
+  background: var(--clr-peach);
+  color: var(--clr-slate-dark);
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+  font-size: 0.9rem;
+  color: var(--clr-slate-dark);
+}
+.infoRow div {
+  flex: 1;
+}
+
+.features {
+  margin-bottom: 1.2rem;
+}
+.features ul {
+  margin: 0.4rem 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.85rem;
+  color: var(--clr-slate-dark);
+}
+.description {
+  padding: 0.9rem 1rem;
+  background: var(--clr-tan);
+  border-left: 3px solid var(--clr-brown);
+  border-radius: 8px;
+  margin-bottom: 1.2rem;
+  color: var(--clr-slate-dark);
+}
+
+.fileLinks a {
+  display: inline-block;
+  margin-right: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--clr-green-dark);
+  text-decoration: underline;
+  margin-bottom: 1rem;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 2px solid var(--clr-green-dark);
+}
+.viewButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.4rem;
+  border-radius: 10px;
+  background: var(--clr-green-dark);
+  color: var(--clr-cream);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.viewButton:hover {
+  background: var(--clr-brown);
+  transform: translateX(4px);
+}
+.buttonIcon {
+  margin-left: 0.4rem;
+  transition: transform 0.2s ease;
+}
+.viewButton:hover .buttonIcon {
+  transform: translateX(3px);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .infoRow {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .clerkTitle {
+    text-align: center;
+  }
+}

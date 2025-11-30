@@ -1,0 +1,257 @@
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* Modal Box */
+.modal {
+  background: linear-gradient(
+    135deg,
+    var(--color-teal-50),
+    var(--color-teal-100)
+  );
+  width: 95%;
+  max-width: 680px;
+  border-radius: 14px;
+  padding: 1.8rem;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+  animation: fadeIn 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* HEADER */
+.header {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.header h2 {
+  font-size: 1.55rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.planDesc {
+  color: var(--color-primary);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.planPrice {
+  color: var(--color-accent);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+/* FORM BASE */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* Rows: LABEL LEFT | INPUT RIGHT */
+.row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rowTop {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+/* Label Left Side */
+.row label,
+.rowTop label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-align: left;
+}
+
+/* Inputs */
+.row input,
+.row select,
+.rowTop textarea,
+.rowTop input,
+.rowTop select {
+  width: 100%;
+  padding: 0.55rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-border-muted);
+  background: #ffffffee;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+  transition: 0.2s ease;
+}
+
+.rowTop textarea {
+  resize: vertical;
+  min-height: 85px;
+}
+
+.row input:focus,
+.row select:focus,
+.rowTop textarea:focus,
+.rowTop input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+/* FEATURE GRID */
+.featuresGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.featureItem {
+  padding: 0.35rem 0.85rem;
+  border-radius: 18px;
+  font-size: 0.8rem;
+  background: var(--color-bg-light);
+  border: 1px solid var(--color-border-muted);
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.25s ease;
+}
+
+.featureItem:hover {
+  background: var(--color-bg-dark);
+  color: #fff;
+}
+
+.checked {
+  background: linear-gradient(90deg, var(--color-accent), var(--color-teal));
+  color: #fff;
+  border-color: var(--color-accent);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+}
+
+.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* FILES */
+.fileInputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.fileList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fileItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.85rem;
+  background: var(--color-bg-light);
+  border-radius: 6px;
+}
+
+/* LINKS */
+.linkRow {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+}
+
+.linkItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0.5rem;
+  background: var(--color-bg-light);
+  border-radius: 6px;
+}
+
+/* BUTTONS */
+.primaryBtn {
+  background: linear-gradient(90deg, var(--color-accent), var(--color-teal));
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+}
+
+.secondaryBtn {
+  background: var(--color-bg-light);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border-muted);
+  padding: 0.6rem 1.1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.secondaryBtn:hover {
+  background: var(--color-secondary);
+  color: white;
+}
+
+/* CLOSE BUTTON */
+.closeBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.3rem;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  color: var(--color-secondary);
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

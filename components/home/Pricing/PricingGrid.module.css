@@ -1,0 +1,116 @@
+.section {
+  padding: 2rem 0;
+  background: linear-gradient(
+    135deg,
+    var(--color-teal-50),
+    var(--color-teal-100)
+  );
+  scroll-margin-top: 80px;
+}
+
+.container {
+  max-width: 90%;
+  padding: 0 1rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--color-teal-950);
+  line-height: 1.2;
+}
+
+.section h2 span {
+  color: var(--color-secondary);
+  font-weight: 800;
+}
+
+.section p {
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-slate-600);
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  align-items: stretch;
+}
+
+.talkLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 1.5rem auto 0;
+  padding: 0.9rem 1.8rem;
+  background: linear-gradient(
+    135deg,
+    var(--color-teal-400) 0%,
+    var(--color-secondary) 100%
+  );
+  color: var(--clr-cream);
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.talkLink:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(
+    135deg,
+    var(--color-secondary) 0%,
+    var(--color-teal-400) 100%
+  );
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+}
+
+.section .customNote {
+  margin-top: 2rem;
+  font-size: 0.95rem;
+  color: var(--color-slate-600);
+  line-height: 1.5;
+  max-width: 600px;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section h2 {
+    font-size: 1.75rem;
+  }
+
+  .section p,
+  .section .customNote {
+    font-size: 0.85rem;
+  }
+
+  .talkLink {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+}

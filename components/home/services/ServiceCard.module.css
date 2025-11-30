@@ -1,0 +1,53 @@
+.card {
+  background: var(--color-amber-50);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.iconWrapper {
+  background: var(--color-teal-50);
+  color: var(--color-teal-800);
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge {
+  font-size: 0.75rem;
+  background: var(--color-secondary);
+  color: var(--color-teal-50);
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-teal-950);
+}
+
+.description {
+  font-size: 0.8rem;
+  color: var(--color-slate-600);
+  margin: 0;
+  line-height: 1.4;
+}

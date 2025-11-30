@@ -1,0 +1,97 @@
+/* Container for the entire page */
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--color-amber-50);
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 110px;
+}
+
+.pageHeading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-teal-950);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: var(--color-teal-950);
+  font-size: 0.9rem;
+}
+
+.formInput {
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  border: 1px solid var(--color-teal-200);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--color-teal-950);
+  background: var(--color-teal-50);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formTextarea {
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  border: 1px solid var(--color-teal-200);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--color-teal-950);
+  background: var(--color-teal-50);
+  min-height: 100px;
+  resize: vertical;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formSelect {
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  border: 1px solid var(--color-teal-200);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--color-teal-950);
+  background: var(--color-teal-50);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.focusable:focus {
+  outline: none;
+  border-color: var(--color-teal-400);
+  box-shadow: 0 0 0 2px rgba(0, 128, 128, 0.2);
+}
+
+.saveButton {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  background-color: var(--color-teal-50);
+  color: var(--color-teal-800);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.saveButton:hover {
+  background-color: var(--color-teal-100);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.errorMessage {
+  color: var(--color-red-600);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}

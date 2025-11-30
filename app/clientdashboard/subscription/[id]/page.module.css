@@ -1,0 +1,480 @@
+/* ===== Section & Card ===== */
+.section {
+  padding: 2rem;
+  font-family: "Poppins", sans-serif;
+  margin-top: 120px;
+  background: #f9fafb;
+  min-height: calc(100vh - 120px);
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: #0d3b2e;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s ease;
+}
+
+.backBtn:hover {
+  color: #0b3227;
+  text-decoration: underline;
+}
+
+.detailsCard {
+  max-width: 780px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.detailsCard:hover {
+  transform: translateY(-2px);
+}
+
+/* ===== Header Row ===== */
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.heading {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0d3b2e;
+  margin: 0;
+}
+
+.idStatus {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.orderId {
+  font-size: 0.9rem;
+  color: #374151;
+  background: #f3f4f6;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+/* ===== Status Badges ===== */
+.status {
+  display: inline-block;
+  padding: 0.45rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statusPending {
+  background: #fff6eb;
+  color: #f97316;
+  border: 1px solid #ffedd5;
+}
+
+.statusCompleted {
+  background: #e6f8ec;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+.statusAccepted {
+  background: #faf5e5;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+
+.statusCancelled,
+.statusFailed {
+  background: #fdeaea;
+  color: #dc2626;
+  border: 1px solid #fee2e2;
+}
+
+.statusInProgress {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+/* ===== Info Grid ===== */
+.infoGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.infoRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.infoRow div {
+  flex: 1 1 180px;
+  min-width: 140px;
+}
+
+.infoSingle {
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.infoGrid strong {
+  display: block;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.3rem;
+}
+
+/* ===== Section Blocks ===== */
+.sectionBlock {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.sectionBlock h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #0d3b2e;
+}
+
+/* ===== Loading & Error ===== */
+.loadingContainer,
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 120px);
+  text-align: center;
+  padding: 2rem;
+}
+
+.spinner {
+  font-size: 2.2rem;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+  color: #0d3b2e;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.retryButton {
+  padding: 0.9rem 1.8rem;
+  background: #0d3b2e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.retryButton:hover {
+  background: #0b3227;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .detailsCard {
+    padding: 2rem;
+  }
+  .heading {
+    font-size: 1.5rem;
+  }
+  .infoRow div {
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 640px) {
+  .infoRow div {
+    flex: 1 1 100%;
+  }
+  .backBtn {
+    font-size: 0.9rem;
+  }
+  .sectionBlock h2 {
+    font-size: 1rem;
+  }
+}
+/* Buttons row */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.payBtn {
+  background: #28a745;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.editBtn {
+  background: #007bff;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.cancelBtn {
+  background: #dc3545;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.payBtn:hover {
+  background: #218838;
+}
+.editBtn:hover {
+  background: #0069d9;
+}
+.cancelBtn:hover {
+  background: #c82333;
+}
+
+/* Payment status */
+.paymentStatus {
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.paymentPaid {
+  background: #d4edda;
+  color: #155724;
+}
+
+.paymentPending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.paymentUnpaid {
+  background: #f8d7da;
+  color: #721c24;
+}
+/* ===== File Attachments ===== */
+.fileList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #f9fafb;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.fileItem:hover {
+  background: #f3f4f6;
+  transform: translateY(-2px);
+}
+
+.fileLink {
+  color: #0d3b2e;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.fileLink:hover {
+  text-decoration: underline;
+}
+
+/* Optional: add a file icon */
+.fileIcon {
+  font-size: 1.2rem;
+  color: #007bff;
+  flex-shrink: 0;
+}
+.deleteBtn {
+  background-color: #e3342f;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.deleteBtn:hover {
+  background-color: #cc1f1a; /* darker red */
+  transform: translateY(-1px);
+}
+/* ===== Link Attachments ===== */
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.linkItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #f0f9ff; /* light blue bg */
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #bae6fd;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.linkItem:hover {
+  background: #e0f2fe;
+  transform: translateY(-2px);
+}
+
+.linkText {
+  color: #0369a1;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.linkText:hover {
+  text-decoration: underline;
+}
+
+.linkIcon {
+  font-size: 1.2rem;
+  color: #0284c7;
+  flex-shrink: 0;
+}
+.chatBtn {
+  background-color: #25d366;
+  color: white;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+
+.chatBtn:hover {
+  background-color: #1ebc5c;
+}
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modalPayBtn {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  background: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.modalPayBtn:hover {
+  background: #005bb5;
+}
+
+.modalCloseBtn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.chatBtn {
+  background-color: #25d366;
+  color: white;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+
+.chatBtn:hover {
+  background-color: #1ebc5c;
+}

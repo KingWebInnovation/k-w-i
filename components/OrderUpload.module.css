@@ -1,0 +1,85 @@
+.sectionBlock {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: #f9fafb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.sectionBlock h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.sectionBlock input[type="file"] {
+  display: block;
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.fileList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.fileList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.fileList li button {
+  background-color: #ef4444;
+  border: none;
+  color: #fff;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.fileList li button:hover {
+  background-color: #dc2626;
+}
+
+.completeBtn,
+.acceptBtn {
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.completeBtn {
+  background-color: #10b981;
+  color: white;
+  margin-top: 0.5rem;
+}
+
+.completeBtn:hover {
+  background-color: #059669;
+}
+
+.acceptBtn {
+  background-color: #3b82f6;
+  color: white;
+  margin-top: 0.5rem;
+}
+
+.acceptBtn:hover {
+  background-color: #2563eb;
+}
