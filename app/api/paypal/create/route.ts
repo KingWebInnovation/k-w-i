@@ -2,28 +2,14 @@ import { NextResponse } from "next/server";
 import { getPayPalClient } from "@/lib/paypal/paypal";
 import paypal from "@paypal/checkout-server-sdk";
 import { Order } from "@/lib/model/Order";
-import { Subscription } from "@/lib/model/Subscription"; // 👈 import subscription model
+import { Subscription } from "@/lib/model/Subscription";
 import { connectDB } from "@/lib/DB/ConnectDB";
 
 interface PayPalCreateBody {
   type: "order" | "subscription";
   orderId?: string;
   subscriptionId?: string;
-  amount?: string; // 💰 amount is in KES from client
-}
-
-// 🔹 Helper: Convert KES → USD
-async function convertKESToUSD(amountKES: number): Promise<number> {
-  const res = await fetch(`https://open.er-api.com/v6/latest/KES`);
-  const data = await res.json();
-
-  if (!data || !data.rates?.USD) {
-    throw new Error("Failed to fetch exchange rate");
-  }
-
-  const rate = data.rates.USD; // e.g. 0.0068 (KES → USD)
-  const usdAmount = (amountKES * rate).toFixed(2); // round to 2 decimals
-  return parseFloat(usdAmount);
+  amount?: string; // 💰 amount is in USD
 }
 
 export async function POST(req: Request) {
@@ -50,9 +36,11 @@ export async function POST(req: Request) {
     // pick correct reference id
     const referenceId = type === "order" ? orderId! : subscriptionId!;
 
-    // 💰 Convert KES to USD before PayPal
-    const kesAmount = Number(amount ?? "500");
-    const usdAmount = await convertKESToUSD(kesAmount);
+    // Use USD amount directly
+    if (!amount) {
+      return NextResponse.json({ error: "Missing amount" }, { status: 400 });
+    }
+    const usdAmount = parseFloat(amount).toFixed(2);
 
     // 1️⃣ Create PayPal order
     const request = new paypal.orders.OrdersCreateRequest();
@@ -64,12 +52,12 @@ export async function POST(req: Request) {
           reference_id: referenceId,
           amount: {
             currency_code: "USD",
-            value: usdAmount.toString(),
+            value: usdAmount,
           },
         },
       ],
       application_context: {
-        brand_name: "NextEssay",
+        brand_name: "King Web Innovation",
         landing_page: "NO_PREFERENCE",
         user_action: "PAY_NOW",
         return_url: `${baseUrl}/paypal-success`,

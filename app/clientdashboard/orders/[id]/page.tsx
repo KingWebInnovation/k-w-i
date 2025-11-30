@@ -9,6 +9,14 @@ import Link from "next/link";
 import { useState } from "react";
 import OrderUploads from "@/components/OrderUpload";
 import { toast } from "react-toastify";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import StripeCheckoutForm from "@/components/stripe/StripeCheckoutForm";
+
+// load Stripe with your publishable key
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+);
 
 interface Order {
   _id: string;
@@ -77,7 +85,7 @@ export default function OrderDetails() {
     enabled: !!id,
   });
 
-  const { data: submissions, isLoading: subsLoading } = useQuery<Submission[]>({
+  const { data: submissions } = useQuery<Submission[]>({
     queryKey: ["submissions", id],
     queryFn: () => fetchSubmissions(id!),
     enabled: !!id,
@@ -167,10 +175,15 @@ export default function OrderDetails() {
   };
 
   const handlePayPal = async () => {
+    if (!orderData?.price) {
+      toast.error("Order price is not available.");
+      return;
+    }
+
     try {
       const res = await axios.post("/api/paypal/create", {
         orderId: orderData._id,
-        amount: orderData.price,
+        amount: orderData.price.toFixed(2),
       });
 
       const approvalUrl = res.data.links?.find(
@@ -184,6 +197,33 @@ export default function OrderDetails() {
       }
     } catch (err) {
       console.error("❌ PayPal create error:", err);
+      toast.error("Payment initialization failed. Try again later.");
+    }
+  };
+
+  const handleStripePay = async () => {
+    try {
+      console.log(
+        "Initiating Stripe payment for order:",
+        orderData._id,
+        "Amount:",
+        orderData.price
+      );
+      const res = await axios.post("/api/stripe/create", {
+        orderId: orderData._id,
+        amount: orderData.price,
+      });
+
+      const { sessionUrl } = res.data;
+      console.log("Stripe create response:", res.data);
+
+      if (sessionUrl) {
+        window.location.href = sessionUrl;
+      } else {
+        toast.error("Failed to initiate Stripe payment.");
+      }
+    } catch (err) {
+      console.error("Stripe create error:", err);
       toast.error("Payment initialization failed. Try again later.");
     }
   };
@@ -272,7 +312,6 @@ export default function OrderDetails() {
                 const fileName = rawName.includes("-")
                   ? rawName.split("-").slice(1).join("-")
                   : rawName;
-
                 return (
                   <li key={index} className={styles.fileItem}>
                     <span className={styles.fileIcon}>📎</span>
@@ -357,7 +396,7 @@ export default function OrderDetails() {
                   Pay Now
                 </button>
                 <Link
-                  href={`/orders/${orderData._id}/edit`}
+                  href={`/clientdashboard/orders/${orderData._id}/edit`}
                   className={styles.editBtn}
                 >
                   Edit
@@ -395,6 +434,10 @@ export default function OrderDetails() {
             <h2>Select Payment Method</h2>
             <button onClick={handlePayPal} className={styles.modalPayBtn}>
               Pay with PayPal
+            </button>
+
+            <button onClick={handleStripePay} className={styles.modalPayBtn}>
+              Pay with Card
             </button>
 
             <button

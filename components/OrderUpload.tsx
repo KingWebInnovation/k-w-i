@@ -78,7 +78,7 @@ export default function OrderUploads({
         });
         if (!uploadRes.ok) throw new Error(`Upload failed for ${f.file.name}`);
 
-        const publicUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/nextessay/${path}`;
+        const publicUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/kwi/${path}`;
 
         uploadedFiles.push({
           fileUrl: publicUrl,

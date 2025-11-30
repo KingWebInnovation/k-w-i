@@ -42,32 +42,44 @@ export default function AdminDashboard() {
 
   if (isLoading) {
     return (
-      <div className={styles.loadingContainer}>
-        <div className={styles.spinner}>⏳</div>
-        <p>Loading orders...</p>
-      </div>
+      <section className={styles.section}>
+        <div className={styles.statusCard}>
+          <div className={styles.statusIcon}>⏳</div>
+          <h2 className={styles.statusHeading}>Loading orders...</h2>
+          <p className={styles.statusText}>
+            Please wait while we fetch the orders.
+          </p>
+        </div>
+      </section>
     );
   }
 
   if (isError) {
     return (
-      <div className={styles.errorContainer}>
-        <h1>⚠️ Failed to load orders</h1>
-        <p>Please try again later.</p>
-        <button onClick={() => refetch()} className={styles.retryButton}>
-          Retry
-        </button>
-      </div>
+      <section className={styles.section}>
+        <div className={`${styles.statusCard} ${styles.errorState}`}>
+          <div className={styles.statusIcon}>⚠️</div>
+          <h2 className={styles.statusHeading}>Failed to load orders</h2>
+          <p className={styles.statusText}>
+            Something went wrong while fetching the orders.
+          </p>
+          <button onClick={() => refetch()} className={styles.retryButton}>
+            Retry
+          </button>
+        </div>
+      </section>
     );
   }
 
   if (!data || data.length === 0) {
     return (
       <section className={styles.section}>
-        <div className={styles.emptyState}>
-          <div className={styles.emptyIcon}>📭</div>
-          <h2>No orders found</h2>
-          <p>No orders are currently in the system.</p>
+        <div className={`${styles.statusCard} ${styles.emptyState}`}>
+          <div className={styles.statusIcon}>📭</div>
+          <h2 className={styles.statusHeading}>No orders found</h2>
+          <p className={styles.statusText}>
+            No orders are currently in the system.
+          </p>
         </div>
       </section>
     );

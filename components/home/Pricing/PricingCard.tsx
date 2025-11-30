@@ -40,7 +40,9 @@ export default function PricingCard({ plan, onSelect }: Props) {
       )}
 
       <div className={styles.header}>
-        <h3 className={styles.title}>{plan.title} Care Plan</h3>
+        <h3 className={styles.title}>
+          {plan.title} {plan.billingCycle === "monthly" ? "Care Plan" : null}
+        </h3>
         <p>{plan.description}</p>
       </div>
 

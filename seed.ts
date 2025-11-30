@@ -7,7 +7,7 @@ dotenv.config();
 
 const plans = [
   {
-    title: "Basic Websit",
+    title: "Basic Website",
     price: 250,
     billingCycle: "one-time",
     description:
@@ -51,7 +51,7 @@ const plans = [
     },
   },
   {
-    title: "Maintenance Basic",
+    title: "Basic",
     price: 49,
     billingCycle: "monthly",
     description:
@@ -67,7 +67,7 @@ const plans = [
     planType: "maintenance",
   },
   {
-    title: "Maintenance Growth",
+    title: "Growth",
     price: 99,
     billingCycle: "monthly",
     description:
@@ -84,7 +84,7 @@ const plans = [
     popular: true,
   },
   {
-    title: "Maintenance Premium",
+    title: "Premium",
     price: 199,
     billingCycle: "monthly",
     description:

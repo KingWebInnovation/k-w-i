@@ -95,7 +95,7 @@ export default function EditOrder() {
       setNewLink("");
       toast.success("✅ Order updated successfully!", { autoClose: 2000 });
       setTimeout(() => {
-        router.push(`/orders/${id}`);
+        router.push(`clientdashboard/orders/${id}`);
       }, 2000);
     },
     onError: () => {

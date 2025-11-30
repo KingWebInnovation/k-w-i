@@ -2,15 +2,15 @@
 .section {
   padding: 2rem;
   font-family: "Poppins", sans-serif;
-  margin-top: 120px;
-  background: #f9fafb;
+  margin-top: 100px;
+  background: var(--color-bg-light);
   min-height: calc(100vh - 120px);
 }
 
 .backBtn {
   background: none;
   border: none;
-  color: #0d3b2e;
+  color: var(--color-bg-dark);
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
   cursor: pointer;
@@ -22,14 +22,14 @@
 }
 
 .backBtn:hover {
-  color: #0b3227;
+  color: var(--color-accent);
   text-decoration: underline;
 }
 
 .detailsCard {
   max-width: 780px;
   margin: 0 auto;
-  background: #fff;
+  background: white;
   padding: 2.5rem;
   border-radius: 20px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
@@ -53,7 +53,7 @@
 .heading {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #0d3b2e;
+  color: var(--color-bg-dark);
   margin: 0;
 }
 
@@ -66,8 +66,8 @@
 
 .orderId {
   font-size: 0.9rem;
-  color: #374151;
-  background: #f3f4f6;
+  color: var(--color-bg-dark);
+  background: var(--color-bg-light);
   padding: 0.4rem 0.8rem;
   border-radius: 8px;
   font-weight: 500;
@@ -86,34 +86,34 @@
 }
 
 .statusPending {
-  background: #fff6eb;
-  color: #f97316;
-  border: 1px solid #ffedd5;
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--color-secondary);
+  border: 1px solid rgba(253, 237, 213, 1);
 }
 
 .statusCompleted {
-  background: #e6f8ec;
-  color: #16a34a;
-  border: 1px solid #bbf7d0;
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--color-accent);
+  border: 1px solid rgba(187, 247, 208, 1);
 }
 
 .statusAccepted {
-  background: #faf5e5;
-  color: #92400e;
-  border: 1px solid #fcd34d;
+  background: rgba(245, 158, 11, 0.2);
+  color: #92400e; /* optionally make a variable for amber-dark */
+  border: 1px solid var(--color-secondary);
 }
 
 .statusCancelled,
 .statusFailed {
-  background: #fdeaea;
+  background: rgba(220, 38, 38, 0.1);
   color: #dc2626;
-  border: 1px solid #fee2e2;
+  border: 1px solid rgba(254, 226, 226, 1);
 }
 
 .statusInProgress {
-  background: #e0f2fe;
+  background: rgba(14, 165, 233, 0.2);
   color: #0369a1;
-  border: 1px solid #bae6fd;
+  border: 1px solid rgba(186, 230, 253, 1);
 }
 
 /* ===== Info Grid ===== */
@@ -123,7 +123,7 @@
   gap: 1rem;
   margin-bottom: 2rem;
   font-size: 0.95rem;
-  color: #374151;
+  color: var(--color-bg-dark);
 }
 
 .infoRow {
@@ -139,13 +139,13 @@
 
 .infoSingle {
   font-size: 0.95rem;
-  color: #374151;
+  color: var(--color-bg-dark);
 }
 
 .infoGrid strong {
   display: block;
   font-weight: 600;
-  color: #111827;
+  color: var(--color-bg-dark);
   margin-bottom: 0.3rem;
 }
 
@@ -153,14 +153,14 @@
 .sectionBlock {
   margin-top: 2rem;
   padding-top: 1rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--color-border-muted);
 }
 
 .sectionBlock h2 {
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: #0d3b2e;
+  color: var(--color-bg-dark);
 }
 
 /* ===== Loading & Error ===== */
@@ -179,7 +179,7 @@
   font-size: 2.2rem;
   animation: spin 1s linear infinite;
   margin-bottom: 1rem;
-  color: #0d3b2e;
+  color: var(--color-bg-dark);
 }
 
 @keyframes spin {
@@ -193,8 +193,8 @@
 
 .retryButton {
   padding: 0.9rem 1.8rem;
-  background: #0d3b2e;
-  color: #fff;
+  background: var(--color-bg-dark);
+  color: white;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -204,34 +204,10 @@
 }
 
 .retryButton:hover {
-  background: #0b3227;
+  background: var(--color-accent);
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 1024px) {
-  .detailsCard {
-    padding: 2rem;
-  }
-  .heading {
-    font-size: 1.5rem;
-  }
-  .infoRow div {
-    flex: 1 1 45%;
-  }
-}
-
-@media (max-width: 640px) {
-  .infoRow div {
-    flex: 1 1 100%;
-  }
-  .backBtn {
-    font-size: 0.9rem;
-  }
-  .sectionBlock h2 {
-    font-size: 1rem;
-  }
-}
-/* Buttons row */
+/* ===== Buttons ===== */
 .actions {
   display: flex;
   justify-content: flex-end;
@@ -240,7 +216,7 @@
 }
 
 .payBtn {
-  background: #28a745;
+  background: var(--color-accent);
   color: white;
   padding: 0.6rem 1.2rem;
   border: none;
@@ -250,7 +226,7 @@
 }
 
 .editBtn {
-  background: #007bff;
+  background: var(--color-teal);
   color: white;
   padding: 0.6rem 1.2rem;
   border: none;
@@ -260,7 +236,7 @@
 }
 
 .cancelBtn {
-  background: #dc3545;
+  background: #dc3545; /* could create a --color-danger */
   color: white;
   padding: 0.6rem 1.2rem;
   border: none;
@@ -272,14 +248,16 @@
 .payBtn:hover {
   background: #218838;
 }
+
 .editBtn:hover {
   background: #0069d9;
 }
+
 .cancelBtn:hover {
   background: #c82333;
 }
 
-/* Payment status */
+/* ===== Payment Status ===== */
 .paymentStatus {
   padding: 0.4rem 0.8rem;
   border-radius: 5px;
@@ -288,19 +266,20 @@
 }
 
 .paymentPaid {
-  background: #d4edda;
-  color: #155724;
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--color-accent);
 }
 
 .paymentPending {
-  background: #fff3cd;
-  color: #856404;
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--color-secondary);
 }
 
 .paymentUnpaid {
-  background: #f8d7da;
+  background: rgba(220, 38, 38, 0.1);
   color: #721c24;
 }
+
 /* ===== File Attachments ===== */
 .fileList {
   list-style: none;
@@ -315,20 +294,20 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background: #f9fafb;
+  background: var(--color-bg-light);
   padding: 0.8rem 1rem;
   border-radius: 10px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border-muted);
   transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .fileItem:hover {
-  background: #f3f4f6;
+  background: var(--color-bg-dark);
   transform: translateY(-2px);
 }
 
 .fileLink {
-  color: #0d3b2e;
+  color: var(--color-bg-dark);
   font-weight: 500;
   text-decoration: none;
   font-size: 0.95rem;
@@ -339,28 +318,6 @@
   text-decoration: underline;
 }
 
-/* Optional: add a file icon */
-.fileIcon {
-  font-size: 1.2rem;
-  color: #007bff;
-  flex-shrink: 0;
-}
-.deleteBtn {
-  background-color: #e3342f;
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  margin: 0 auto;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.deleteBtn:hover {
-  background-color: #cc1f1a; /* darker red */
-  transform: translateY(-1px);
-}
 /* ===== Link Attachments ===== */
 .linkList {
   list-style: none;
@@ -375,15 +332,15 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background: #f0f9ff; /* light blue bg */
+  background: rgba(14, 165, 233, 0.1);
   padding: 0.8rem 1rem;
   border-radius: 10px;
-  border: 1px solid #bae6fd;
+  border: 1px solid rgba(186, 230, 253, 1);
   transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .linkItem:hover {
-  background: #e0f2fe;
+  background: rgba(14, 165, 233, 0.2);
   transform: translateY(-2px);
 }
 
@@ -404,66 +361,7 @@
   color: #0284c7;
   flex-shrink: 0;
 }
-.chatBtn {
-  background-color: #25d366;
-  color: white;
-  font-weight: 600;
-  padding: 10px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  display: inline-block;
-  transition: background 0.3s ease;
-}
 
-.chatBtn:hover {
-  background-color: #1ebc5c;
-}
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
-}
-
-.modalPayBtn {
-  display: block;
-  width: 100%;
-  margin: 0.5rem 0;
-  padding: 0.75rem;
-  background: #0070f3;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.modalPayBtn:hover {
-  background: #005bb5;
-}
-
-.modalCloseBtn {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  background: #ccc;
-  border-radius: 6px;
-  cursor: pointer;
-}
 .chatBtn {
   background-color: #25d366;
   color: white;

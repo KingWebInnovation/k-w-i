@@ -185,7 +185,11 @@ export default function PlanModal({ plan, onClose }: Props) {
         </button>
 
         <div className={styles.header}>
-          <h2>{plan.title}</h2>
+          <h2>
+            {plan.title}{" "}
+            {plan.billingCycle === "monthly" ? "Care Plan" : "Website"}
+          </h2>
+
           <p className={styles.planDesc}>{plan.description}</p>
           <p className={styles.planPrice}>${formData.price}</p>
         </div>
